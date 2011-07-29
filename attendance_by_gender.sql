@@ -61,8 +61,6 @@ from
            else 0
            end) as OSS
 from
-        --select distinct is kinda sloppy here...but a kid can tranfer in and out over the course of the year
-        --and you don't want dupes.  so there you have it...
 (select studentid as base_studentid
        ,s.lastfirst as base_lastfirst
        ,base_schoolid
@@ -75,6 +73,8 @@ from
 --finished the year at NCA; students table has students who TRANSFERRED mid year.
 --this base query gets both of those via a union operator.
 (select distinct re.studentid as base_studentid
+        --select distinct is kinda sloppy here...but a kid can tranfer in and out over the course of the year
+        --and you don't want dupes.  so there you have it...
        ,re.schoolid as base_schoolid
        ,re.grade_level as base_grade_level
  from reenrollments@PS_TEAM re
