@@ -1,6 +1,17 @@
 select base_schoolid
       ,base_grade_level
       ,sum(aug_member)
+      ,sum(sep_member)
+      ,sum(oct_member)
+      ,sum(nov_member)
+      ,sum(dec_member)
+      ,sum(jan_member)
+      ,sum(feb_member)
+      ,sum(mar_member)
+      ,sum(apr_member)
+      ,sum(may_member)
+      ,sum(jun_member)
+                        
 from
 
   
@@ -38,6 +49,6 @@ from
           from students
           where students.entrydate > '01-AUG-10'
             and students.enroll_status > 0 and students.exitdate > '01-AUG-10') --and students.schoolid != 999999
-group by cube (base_schoolid, base_grade_level)
+group by base_schoolid, base_grade_level, sum
 --group by base_schoolid, base_grade_level
 order by base_schoolid, base_grade_level
